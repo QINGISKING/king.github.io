@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播</title>
+    <style>
+        div {
+            width: 1000px;
+            height: 300px;
+            margin: 50px auto;
+            background-image: url(./imgs/libanner.png);
+            background-size: 100% 100%;
+            position: relative;
+        }
+
+        div>button {
+            width: 30px;
+            height: 30px;
+            background-color: rgb(36, 30, 30);
+            color: white;
+            padding: 0;
+            border: unset;
+            position: absolute;
+            bottom: 10px;
+        }
+
+        div>button:hover {
+            outline: unset;
+        }
+
+        div>button:focus {
+            border: 1px solid red;
+            outline: unset;
+        }
+
+        div>button:nth-of-type(1) {
+            left: 15px;
+        }
+
+        div>button:nth-of-type(2) {
+            left: 55px;
+        }
+
+        div>button:nth-of-type(3) {
+            left: 95px;
+        }
+
+        div>button:nth-of-type(4) {
+            left: 135px;
+        }
+
+        div>button:nth-of-type(5) {
+            left: 175px;
+        }
+
+        div>button:nth-of-type(6) {
+            right: 55px;
+        }
+
+        div>button:nth-of-type(7) {
+            right: 15px;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div>
+        <button class="num">1</button>
+        <button class="num">2</button>
+        <button class="num">3</button>
+        <button class="num">4</button>
+        <button class="num">5</button>
+        <button class="prev">&lt;</button>
+        <button class="next">&gt;</button>
+    </div>
+    <script src="./jquery-3.3.1.js"></script>
+    <script>
+        var count = 0;
+        var pic = ['url(./imgs/libanner.png)', 'url(./imgs/peibanner.jpg)', 'url(./imgs/shabanner.png)',
+            'url(./imgs/shabanner1.jpg)', 'url(./imgs/toubanner.JPG)'
+        ];
+        $('button').eq(0).focus();
+        function times(){
+            count=count>=4?0:count+1;
+            $('div').css('background-image',pic[count]);
+            $('button').eq(count).focus();
+        }
+        // 设置图片自动循环播放
+        var time = setInterval(times,2000);
+        // 给按钮1到5添加点击事件切换图片
+        $('.num').click(function(){
+            count=$(this).text()-1;
+            $('div').css('background-image',pic[count]);
+        })
+        // 切换上一张图片
+        $('.prev').click(function(){
+            count=count==0?4:count-1;
+            $('div').css('background-image',pic[count]);
+            $('button').eq(count).focus();
+        })
+        // 切换下一张图片
+        $('.next').click(function(){
+            count=count==4?0:count+1;
+            $('div').css('background-image',pic[count]);
+            $('button').eq(count).focus();
+        })
+        // 当鼠标移动到图片上时，停止播放
+        $('div').hover(function(){
+            clearInterval(time);
+        },function(){
+            time=setInterval(times,2000);
+        })
+    </script>
+</body>
+
+</html>
