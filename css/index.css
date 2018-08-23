@@ -15,7 +15,7 @@ body{
     height: 300px;
     margin: 115px auto 0;
 }
-#box .prev,#box .next{
+#box .slide_prev,#box .slide_next{
     position: absolute;
     top: 50%;
     width: 40px;
@@ -26,10 +26,10 @@ body{
     background-color: red;
     color: yellow;
 }
-#box .prev{
+#box .slide_prev{
     left: -60px;
 }
-#box .next{
+#box .slide_next{
     right: -60px;
 }
 #box ul{
